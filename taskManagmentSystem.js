@@ -31,9 +31,3 @@ as the first parameter and the message "Task completed successfully" as the seco
 Define a function named listTasks that does not take any parameters.
 Inside the listTasks function, log each task in the tasks array to the console, along with its corresponding index.*/
 
-
-const tasks = []
-
-function addTask(task, callback) {
-   
-}
