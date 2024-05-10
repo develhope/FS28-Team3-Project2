@@ -79,3 +79,11 @@ completeTask(0, (error, data) => {
     console.log(data);
   }
 });
+
+function listTask(tasks) {
+  tasks.forEach((task, index) => {
+    console.log(`Task ${index + 1}: ${task}`);
+  });
+}
+
+listTask(tasks);
