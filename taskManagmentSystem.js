@@ -47,5 +47,35 @@ function addTask(task, callback) {
 }
 
 function completeTask(index, callback) {
-
+  setTimeout(() => {
+    if (index < 0 || index >= tasks.length) {
+      callback(new Error("Invalid task index"));
+    } else {
+      tasks.slice(index, 1);
+      callback(null, "Task completed successfully");
+    }
+  }, 2000);
 }
+
+addTask("Dare cibo al cane", (data, error) => {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(data);
+  }
+});
+addTask("Fare la spesa", (data, error) => {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(data);
+  }
+});
+
+completeTask(0, (error, data) => {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(data);
+  }
+});
