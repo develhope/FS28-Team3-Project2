@@ -31,59 +31,51 @@ as the first parameter and the message "Task completed successfully" as the seco
 Define a function named listTasks that does not take any parameters.
 Inside the listTasks function, log each task in the tasks array to the console, along with its corresponding index.*/
 
-const tasks = [];
+const tasks = []
 
-function addTask(task, callback) {
+function addTask(callback, ...tasksToAdd) {
   setTimeout(() => {
-    if (!task || typeof task != "string") {
-      callback(new Error("Task must be a non-empty string"), null);
+    if (tasksToAdd.find(task => !task || typeof task != 'string')) {
+      callback(new Error("Task must be a non-empty string"), null)
     } else {
-      tasks.push(task);
-      callback(null, "Task added successfully");
+      tasksToAdd.forEach((task) => tasks.push(task))
+      callback(null, "Task added successfully")
     }
 
-    tasks.forEach((element) => console.log(element));
+    tasks.forEach((element) => console.log(element))
   }, 1000);
 }
 
-function completeTask(index, callback) {
+function completeTask(callback, ...index) {
   setTimeout(() => {
     if (index < 0 || index >= tasks.length) {
-      callback(new Error("Invalid task index"));
+      callback(new Error("Invalid task index"))
     } else {
-      tasks.slice(index, 1);
-      callback(null, "Task completed successfully");
+      tasks.slice(index, 1)
+      callback(null, "Task completed successfully")
     }
   }, 2000);
 }
 
-addTask("Dare cibo al cane", (data, error) => {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log(data);
-  }
-});
-addTask("Fare la spesa", (data, error) => {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log(data);
-  }
-});
 
-completeTask(0, (error, data) => {
+addTask((data, error) => {
   if (error) {
     console.log(error);
   } else {
     console.log(data);
   }
-});
+}, 'Dare cibo al cane', 'Fare la spesa', 'Fare i compiti');
 
-function listTask(tasks) {
-  tasks.forEach((task, index) => {
-    console.log(`Task ${index + 1}: ${task}`);
-  });
+completeTask((error, data) => {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(data);
+  }
+}, 0, 1, 2);
+
+function listTask() {
+  tasks.forEach((task) => { console.log(`Task ${index + 1}: ${task}`) })
 }
 
-listTask(tasks);
+listTask()
